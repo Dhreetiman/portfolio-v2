@@ -1,0 +1,222 @@
+%-------------------------
+% Resume in Latex
+% Author : Adapted for Dhreetiman Prasad
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Dhreetiman Prasad} \\ \vspace{3pt}
+    {\normalsize Software Developer \textbar\ AI / Backend Engineer} \\ \vspace{3pt}
+    Vadodara, Gujarat, India \\ \vspace{3pt}
+    \small \raisebox{-0.1\height}\faPhone\ +91-6200391420 ~ 
+    \href{mailto:dhreetiman02@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{dhreetiman02@gmail.com}} ~ 
+    \href{https://www.linkedin.com/in/dhreetiman-prasad/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/dhreetiman-prasad/}}  ~
+    \href{https://github.com/Dhreetiman}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/Dhreetiman}}
+    \vspace{-8pt}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Professional Summary}
+  \resumeSubHeadingListStart
+    \item
+      \begin{itemize}
+        \item \small{Backend and AI engineer with 3+ years architecting and owning production systems in Node.js and Python (FastAPI). Builds scalable microservices and LLM-powered features using RAG, vector search, and OpenAI, and re-engineered high-traffic services to cut API response times by \textbf{up to 89\%}. Leads backend delivery end to end --- driving architecture decisions, mentoring engineers through code reviews, and turning ambiguous client requirements into reliable, high-performance products.}
+      \end{itemize}
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: JavaScript, TypeScript, Python, SQL, HTML/CSS} \\
+     \textbf{Backend \& Frameworks}{: Node.js, Express, Nest.js, FastAPI, Sequelize.js} \\
+     \textbf{AI / ML}{: RAG, Vector Databases (Pinecone, Qdrant), Embeddings, Fine-tuning, Prompt \& Context Engineering, LangChain / LangGraph, OpenAI API, HuggingFace, PyTorch, Scikit-learn, Pandas} \\
+     \textbf{Databases}{: PostgreSQL, MongoDB, MySQL, Redis} \\
+     \textbf{DevOps \& Cloud}{: AWS (EC2, Lambda, S3), Docker, Jenkins, NGINX, Kafka, CI/CD} \\
+     \textbf{Tools \& Protocols}{: Git, Postman, JIRA, WebSocket, OCPP, Prometheus, Grafana, Mocha} \\
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Eliteware Solutions}{Oct. 2023 -- Present}
+      {Software Engineer}{Vadodara, Gujarat}
+      \resumeItemListStart
+        \resumeItem{Architected and led backend development for \textbf{Klimates}, a carbon-accounting SaaS, designing a \textbf{9-service} microservices architecture across Node.js/Express and Python/FastAPI that powers automated emissions tracking and reporting.}
+        \resumeItem{Optimized PostgreSQL query design, indexing strategy, and data-access patterns across the analytics layer, \textbf{cutting API response times by up to 89\%} --- bringing the heaviest endpoints from over 5 seconds to under 1 second, with no change to output.}
+        \resumeItem{Built an AI-driven emission-classification engine in Python/FastAPI using \textbf{OpenAI GPT-4o} and a \textbf{RAG} pipeline with \textbf{Pinecone} vector search, automatically mapping transaction data to the correct emission categories.}
+        \resumeItem{Engineered real-time, bidirectional communication between EV chargers and backend services using the \textbf{OCPP} protocol over \textbf{WebSocket}, enabling live charger monitoring, session tracking, and remote start/stop control.}
+        \resumeItem{Led cross-functional development teams across multiple products --- owning technical direction, code reviews, and feature delivery --- while serving as the primary client contact for requirements and progress updates.}
+        \resumeItem{Championed AI-assisted development across the team --- integrating tools like Claude and Codex into engineering workflows and training interns to apply them for task automation --- accelerating delivery on complex engineering work.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Kavara Tech}{May 2023 -- Sep. 2023}
+      {Backend Developer}{Noida, Uttar Pradesh}
+      \resumeItemListStart
+        \resumeItem{Designed and shipped backend features and REST APIs for cloud-based applications, contributing directly to the engineering team's delivery roadmap.}
+        \resumeItem{Implemented server configuration and automated deployment workflows, streamlining the release process and improving build reliability.}
+        \resumeItem{Authored test cases and resolved production issues alongside senior engineers, raising code quality and reducing recurring bugs.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {FunctionUp}{Sep. 2022 -- May 2023}
+      {Software Developer Intern}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built and shipped features for booking and e-commerce web applications, contributing across the stack from REST API design to database integration.}
+        \resumeItem{Built a strong foundation in software engineering --- REST API design, relational data modeling, and version control --- through intensive, project-based development.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-12pt}
+
+%-----------PROJECTS-----------
+\section{Personal Projects}
+    \vspace{-5pt}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{Multi-Agent Research Assistant} $|$ \emph{FastAPI, OpenAI, LangGraph, Qdrant, Redis, Docker}}{2025}
+          \resumeItemListStart
+            \resumeItem{Built an AI multi-agent research platform with \textbf{six specialized agents} (research, web search, summarization, fact-checking, citation, report generation) orchestrated via \textbf{LangGraph}.}
+            \resumeItem{Implemented a \textbf{RAG} pipeline with \textbf{Qdrant} vector search, PDF ingestion, and document memory, served by an async \textbf{FastAPI} backend with \textbf{WebSocket} token streaming and citation-aware generation.}
+          \resumeItemListEnd
+          \vspace{-8pt}
+
+      \resumeProjectHeading
+          {\textbf{AI API Gateway} $|$ \emph{FastAPI, Redis, PostgreSQL, Prometheus, Grafana, Docker, NGINX}}{2025}
+          \resumeItemListStart
+            \resumeItem{Engineered a production-grade gateway routing requests across multiple LLM providers, with intelligent model selection, token/cost tracking, rate limiting, and API-key authentication.}
+            \resumeItem{Added Redis response caching with retry and provider fallback for high availability, and integrated Prometheus/Grafana observability for request tracing and latency/error metrics.}
+          \resumeItemListEnd
+          \vspace{-8pt}
+
+      \resumeProjectHeading
+          {\textbf{Openwave} $|$ \emph{Node.js, Express, TypeScript, Socket.IO, Prisma/PostgreSQL, AWS S3, Next.js}}{2025}
+          \resumeItemListStart
+            \resumeItem{Built the backend for a programmer social platform --- \textbf{68 REST endpoints} in TypeScript/Express, \textbf{Socket.IO} real-time chat, and code execution across \textbf{13 languages} via the Piston API.}
+            \resumeItem{Modeled 17 entities (profiles, coding challenges, submissions, posts, conversations) in Prisma/PostgreSQL with AWS S3 presigned uploads; Next.js frontend in progress.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+\vspace{-12pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Assam Down Town University}{June 2019 -- July 2022}
+      {B.Sc. in Information Technology}{Guwahati, Assam}
+  \resumeSubHeadingListEnd
+
+\vspace{-10pt}
+
+%-----------LANGUAGES (optional)---------------
+% To restore a Languages section, uncomment the block below:
+% \section{Languages}
+%     \begin{itemize}[leftmargin=0.15in, label={}]
+%         \small{\item{Hindi, English}}
+%     \end{itemize}
+
+\end{document}
