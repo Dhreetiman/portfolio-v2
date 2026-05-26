@@ -174,18 +174,42 @@ const Banner = () => {
                                     $ ./send_email.sh
                                 </MagneticButton>
 
-                                <div className="flex items-center gap-2 text-xs">
-                                    <span className="relative inline-flex items-center justify-center size-3">
-                                        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-60" />
-                                        <span className="relative size-2 rounded-full bg-primary" />
+                                <a
+                                    href="/Dhreetiman_Resume.pdf"
+                                    download="Dhreetiman_Prasad_Resume.pdf"
+                                    className="group inline-flex items-center gap-2 px-5 h-12 font-mono text-sm tracking-wider border border-border bg-background-light/30 text-muted-foreground hover:border-secondary hover:text-secondary transition-colors"
+                                >
+                                    $ wget resume.pdf
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="group-hover:translate-y-0.5 transition-transform"
+                                    >
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="7 10 12 15 17 10" />
+                                        <line x1="12" y1="15" x2="12" y2="3" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div className="flex items-center gap-2 text-xs">
+                                <span className="relative inline-flex items-center justify-center size-3">
+                                    <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-60" />
+                                    <span className="relative size-2 rounded-full bg-primary" />
+                                </span>
+                                <span className="text-muted-foreground">
+                                    status:{' '}
+                                    <span className="text-primary">
+                                        available_for_hire
                                     </span>
-                                    <span className="text-muted-foreground">
-                                        status:{' '}
-                                        <span className="text-primary">
-                                            available_for_hire
-                                        </span>
-                                    </span>
-                                </div>
+                                </span>
                             </div>
                         </div>
 
