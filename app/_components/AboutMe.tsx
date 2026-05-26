@@ -1,4 +1,6 @@
 'use client';
+import CodeBlock from '@/components/CodeBlock';
+import Prompt from '@/components/Prompt';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -52,40 +54,62 @@ const AboutMe = () => {
     );
 
     return (
-        <section className="pb-section" id="about-me">
+        <section className="py-section" id="about-me">
             <div className="container" ref={container}>
-                <h2 className="text-4xl md:text-6xl font-thin mb-20 slide-up-and-fade">
-                    I believe great backend systems are invisible — fast,
-                    reliable, and quietly doing exactly what users need without
-                    getting in their way.
-                </h2>
+                <div className="slide-up-and-fade mb-10">
+                    <Prompt path="~/about" command="cat about.md" showCaret />
+                </div>
 
-                <p className="pb-3 border-b text-muted-foreground slide-up-and-fade">
-                    This is me.
-                </p>
+                <CodeBlock lang="md" filename="philosophy.md" className="mb-16 slide-up-and-fade">
+                    <code className="text-base md:text-xl leading-relaxed text-code-comment">
+                        <span className="text-secondary">/**</span>
+                        {'\n'}
+                        <span className="text-secondary"> *</span>{' '}
+                        <span className="text-foreground/90">
+                            I believe great backend systems are invisible —
+                        </span>
+                        {'\n'}
+                        <span className="text-secondary"> *</span>{' '}
+                        <span className="text-foreground/90">
+                            fast, reliable, and quietly doing exactly what
+                        </span>
+                        {'\n'}
+                        <span className="text-secondary"> *</span>{' '}
+                        <span className="text-foreground/90">
+                            users need without getting in their way.
+                        </span>
+                        {'\n'}
+                        <span className="text-secondary"> */</span>
+                    </code>
+                </CodeBlock>
 
-                <div className="grid md:grid-cols-12 mt-9">
+                <div className="grid md:grid-cols-12 gap-y-6 md:gap-x-10">
                     <div className="md:col-span-5">
-                        <p className="text-5xl slide-up-and-fade">
+                        <p className="text-5xl md:text-6xl font-anton slide-up-and-fade leading-none">
+                            <span className="text-muted-foreground font-mono text-2xl md:text-3xl align-top mr-2">
+                                ##
+                            </span>
                             Hi, I&apos;m Dhreetiman.
                         </p>
                     </div>
                     <div className="md:col-span-7">
-                        <div className="text-lg text-muted-foreground max-w-[450px]">
+                        <div className="text-lg text-muted-foreground max-w-[520px] space-y-4">
                             <p className="slide-up-and-fade">
-                                I&apos;m a backend and AI engineer who
-                                architects production systems in Node.js and
-                                Python — microservices, real-time pipelines,
-                                and LLM-powered features built on RAG, vector
-                                search, and OpenAI.
+                                I&apos;m a backend and AI engineer who owns
+                                production systems end to end — from architecture
+                                and performance work, through LLM-powered features,
+                                to being the technical voice in client
+                                conversations.
                             </p>
-                            <p className="mt-3 slide-up-and-fade">
-                                I own backend delivery end to end: driving
-                                architecture decisions, re-engineering
-                                high-traffic services for performance, mentoring
-                                engineers through code reviews, and turning
-                                ambiguous requirements into reliable products
-                                that hold up under real load.
+                            <p className="slide-up-and-fade">
+                                I design for scale and reliability, then sweat the
+                                hot paths until they fly. Recent wins: 89% API
+                                latency cuts on the analytics layer; a multi-agent
+                                RAG pipeline shipped to production; an OCPP / WebSocket
+                                EV-charger control plane.
+                            </p>
+                            <p className="slide-up-and-fade font-mono text-sm text-code-key">
+                                tags: #backend #ai #microservices #rag #postgres
                             </p>
                         </div>
                     </div>

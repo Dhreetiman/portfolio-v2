@@ -33,33 +33,22 @@ const Experiences = () => {
         { scope: containerRef },
     );
 
-    useGSAP(
-        () => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'bottom 50%',
-                    end: 'bottom 20%',
-                    scrub: 1,
-                },
-            });
-
-            tl.to(containerRef.current, {
-                y: -150,
-                opacity: 0,
-            });
-        },
-        { scope: containerRef },
-    );
-
     return (
         <section className="py-section" id="my-experience">
             <div className="container" ref={containerRef}>
-                <SectionTitle title="My Experience" />
+                <SectionTitle
+                    title="my experience"
+                    path="~/experience"
+                    command="git log --oneline"
+                />
 
-                <div className="grid gap-14">
-                    {MY_EXPERIENCE.map((item) => (
-                        <Experience key={item.slug} experience={item} />
+                <div className="grid gap-12 font-mono">
+                    {MY_EXPERIENCE.map((item, idx) => (
+                        <Experience
+                            key={item.slug}
+                            experience={item}
+                            isLatest={idx === 0}
+                        />
                     ))}
                 </div>
             </div>

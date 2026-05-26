@@ -1,11 +1,13 @@
 'use client';
-import ArrowAnimation from '@/components/ArrowAnimation';
+import CodeBlock from '@/components/CodeBlock';
+import Terminal from '@/components/Terminal';
 import TransitionLink from '@/components/TransitionLink';
+import { GENERAL_INFO, MY_EXPERIENCE } from '@/lib/data';
 import { IExperience } from '@/types';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 
 interface Props {
@@ -20,44 +22,21 @@ const ExperienceDetails = ({ experience }: Props) => {
     useGSAP(
         () => {
             if (!containerRef.current) return;
-
-            gsap.set('.fade-in-later', {
-                autoAlpha: 0,
-                y: 30,
-            });
-            const tl = gsap.timeline({
-                delay: 0.5,
-            });
-
-            tl.to('.fade-in-later', {
-                autoAlpha: 1,
-                y: 0,
-                stagger: 0.1,
-            });
+            gsap.set('.fade-in-later', { autoAlpha: 0, y: 30 });
+            const tl = gsap.timeline({ delay: 0.5 });
+            tl.to('.fade-in-later', { autoAlpha: 1, y: 0, stagger: 0.1 });
         },
         { scope: containerRef },
     );
 
-    useGSAP(
-        () => {
-            if (window.innerWidth < 992) return;
-
-            gsap.to('#info', {
-                filter: 'blur(3px)',
-                autoAlpha: 0,
-                scale: 0.9,
-                scrollTrigger: {
-                    trigger: '#info',
-                    start: 'bottom bottom',
-                    end: 'bottom top',
-                    pin: true,
-                    pinSpacing: false,
-                    scrub: 0.5,
-                },
-            });
-        },
-        { scope: containerRef },
+    const currentIdx = MY_EXPERIENCE.findIndex(
+        (e) => e.slug === experience.slug,
     );
+    const prevExp = currentIdx > 0 ? MY_EXPERIENCE[currentIdx - 1] : null;
+    const nextExp =
+        currentIdx >= 0 && currentIdx < MY_EXPERIENCE.length - 1
+            ? MY_EXPERIENCE[currentIdx + 1]
+            : null;
 
     return (
         <section className="pt-5 pb-14">
@@ -65,99 +44,152 @@ const ExperienceDetails = ({ experience }: Props) => {
                 <TransitionLink
                     back
                     href="/"
-                    className="mb-16 inline-flex gap-2 items-center group h-12"
+                    className="mb-10 inline-flex gap-2 items-center group h-12 font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                    <ArrowLeft className="group-hover:-translate-x-1 group-hover:text-primary transition-all duration-300" />
-                    Back
+                    <ArrowLeft
+                        size={16}
+                        className="group-hover:-translate-x-1 transition-all duration-300"
+                    />
+                    cd ..
                 </TransitionLink>
 
-                <div
-                    className="top-0 min-h-[calc(100svh-100px)] flex"
-                    id="info"
+                <Terminal
+                    tab={`~/experience/${experience.slug}`}
+                    statusLeft="git log -p"
+                    statusRight={`~/experience/${experience.slug}`}
+                    className="mb-12"
                 >
-                    <div className="relative w-full">
-                        <div className="mx-auto mb-10 max-w-[635px]">
-                            <p className="fade-in-later opacity-0 text-xl text-muted-foreground mb-3">
-                                {experience.company}
-                            </p>
-                            <h1 className="fade-in-later opacity-0 text-4xl md:text-[60px] leading-none font-anton overflow-hidden">
-                                <span className="inline-block">
-                                    {experience.title}
-                                </span>
-                            </h1>
-                        </div>
-
-                        <div className="max-w-[635px] space-y-7 pb-20 mx-auto">
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Duration
-                                </p>
-                                <div className="text-lg">
+                    <div className="font-mono">
+                        <div className="fade-in-later mb-8">
+                            <CodeBlock lang="git" filename="commit.log">
+                                <code className="text-sm leading-relaxed">
+                                    <span className="text-code-string">
+                                        commit
+                                    </span>{' '}
+                                    <span className="text-code-number">
+                                        ({experience.slug})
+                                    </span>
+                                    {'\n'}
+                                    <span className="text-muted-foreground">
+                                        Author:
+                                    </span>{' '}
+                                    Dhreetiman Prasad &lt;{GENERAL_INFO.email}&gt;
+                                    {'\n'}
+                                    <span className="text-muted-foreground">
+                                        Date:&nbsp;&nbsp;
+                                    </span>
                                     {experience.duration}
-                                </div>
-                            </div>
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Location
-                                </p>
-                                <div className="text-lg">
+                                    {'\n'}
+                                    <span className="text-muted-foreground">
+                                        Location:
+                                    </span>{' '}
                                     {experience.location}
-                                </div>
-                            </div>
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Tech & Tools
-                                </p>
-                                <div className="text-lg">
-                                    {experience.techStack.join(', ')}
-                                </div>
-                            </div>
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Summary
-                                </p>
-                                <div className="text-lg">
-                                    {experience.summary}
-                                </div>
-                            </div>
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    About the role
-                                </p>
-                                <div className="text-lg text-muted-foreground">
-                                    {experience.description}
-                                </div>
-                            </div>
+                                    {'\n'}
+                                    <span className="text-muted-foreground">
+                                        Stack:&nbsp;&nbsp;&nbsp;
+                                    </span>{' '}
+                                    <span className="text-code-string">
+                                        {experience.techStack.join(', ')}
+                                    </span>
+                                </code>
+                            </CodeBlock>
                         </div>
 
-                        <ArrowAnimation />
-                    </div>
-                </div>
+                        <h1 className="fade-in-later text-3xl md:text-[56px] leading-tight font-anton mb-8">
+                            <span className="text-muted-foreground font-mono text-base mr-3 align-top">
+                                #
+                            </span>
+                            {experience.title}{' '}
+                            <span className="text-muted-foreground">@</span>{' '}
+                            <span className="text-primary">
+                                {experience.company}
+                            </span>
+                        </h1>
 
-                <div className="fade-in-later relative max-w-[800px] mx-auto">
-                    <p className="text-muted-foreground font-anton mb-10 text-center text-2xl">
-                        Highlights
+                        <div className="fade-in-later mb-8">
+                            <p className="text-muted-foreground font-mono text-sm mb-3">
+                                <span className="text-code-key">##</span> Summary
+                            </p>
+                            <p className="text-base md:text-lg font-[var(--font-roboto-flex)]">
+                                {experience.summary}
+                            </p>
+                        </div>
+
+                        <div className="fade-in-later mb-8">
+                            <p className="text-muted-foreground font-mono text-sm mb-3">
+                                <span className="text-code-key">##</span> About
+                                the role
+                            </p>
+                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-[var(--font-roboto-flex)]">
+                                {experience.description}
+                            </p>
+                        </div>
+                    </div>
+                </Terminal>
+
+                <div className="max-w-[860px] mx-auto">
+                    <p className="text-muted-foreground font-mono text-sm mb-8">
+                        <span className="text-code-key">##</span> Highlights
                     </p>
 
-                    <div className="flex flex-col gap-12">
+                    <div className="flex flex-col gap-10">
                         {experience.highlights.map((highlight, idx) => (
                             <div
                                 key={highlight.title}
-                                className="flex gap-5 md:gap-8 border-b border-background-light pb-12 last:border-b-0"
+                                className="border-l-2 border-border/40 hover:border-primary pl-6 transition-colors"
                             >
-                                <div className="font-anton text-muted-foreground text-xl md:text-2xl shrink-0">
-                                    _{(idx + 1).toString().padStart(2, '0')}.
-                                </div>
-                                <div>
-                                    <h3 className="text-2xl md:text-3xl font-anton leading-tight mb-4">
-                                        {highlight.title}
-                                    </h3>
-                                    <p className="text-lg text-muted-foreground leading-relaxed">
-                                        {highlight.body}
-                                    </p>
-                                </div>
+                                <p className="font-mono text-sm mb-2">
+                                    <span className="text-code-string">
+                                        commit
+                                    </span>{' '}
+                                    <span className="text-code-number">
+                                        {(idx + 1).toString().padStart(2, '0')}
+                                    </span>{' '}
+                                    <span className="text-muted-foreground">
+                                        — {experience.title} @{' '}
+                                        {experience.company}
+                                    </span>
+                                </p>
+                                <h3 className="text-xl md:text-3xl font-anton leading-tight mb-3">
+                                    {highlight.title}
+                                </h3>
+                                <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-[var(--font-roboto-flex)]">
+                                    {highlight.body}
+                                </p>
                             </div>
                         ))}
+                    </div>
+
+                    <div className="mt-16 flex flex-wrap items-center justify-between gap-4 font-mono text-sm border-t border-border/40 pt-6">
+                        {prevExp ? (
+                            <TransitionLink
+                                href={`/experience/${prevExp.slug}`}
+                                className="group inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <ArrowLeft
+                                    size={14}
+                                    className="group-hover:-translate-x-1 transition-all"
+                                />
+                                cd ../{prevExp.slug}
+                            </TransitionLink>
+                        ) : (
+                            <span />
+                        )}
+
+                        {nextExp ? (
+                            <TransitionLink
+                                href={`/experience/${nextExp.slug}`}
+                                className="group inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                cd ../{nextExp.slug}
+                                <ArrowRight
+                                    size={14}
+                                    className="group-hover:translate-x-1 transition-all"
+                                />
+                            </TransitionLink>
+                        ) : (
+                            <span />
+                        )}
                     </div>
                 </div>
             </div>

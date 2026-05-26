@@ -31,6 +31,11 @@
         --chart-3: 30 80% 55%;
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
+
+        --code-key: 193 100% 60%;
+        --code-string: 330 100% 70%;
+        --code-number: 140 100% 60%;
+        --code-comment: 0 0% 50%;
     }
 }
 
@@ -53,5 +58,33 @@
 
     .markdown-text ul {
         @apply pl-5 mt-2 list-disc;
+    }
+
+    .grid-bg {
+        background-image:
+            radial-gradient(
+                circle at 1px 1px,
+                hsl(0 0% 100% / 0.05) 1px,
+                transparent 0
+            );
+        background-size: 32px 32px;
+    }
+
+    .terminal-frame {
+        @apply border border-border/60 rounded-md bg-background/40 backdrop-blur-[1px];
+    }
+
+    .terminal-tabbar {
+        @apply flex items-center gap-2 px-4 py-2 border-b border-border/60 font-mono text-xs text-muted-foreground;
+    }
+
+    .terminal-tabbar-dot {
+        @apply inline-block size-2.5 rounded-full;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
     }
 }

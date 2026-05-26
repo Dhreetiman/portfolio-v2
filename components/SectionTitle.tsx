@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { SectionFlower } from './icons';
 import { cn } from '@/lib/utils';
+import Prompt from './Prompt';
 
 interface Props {
     icon?: ReactNode;
@@ -11,36 +11,42 @@ interface Props {
         icon?: string;
     };
     title: string;
+    /** Optional path prefix for the prompt. Defaults to `~`. */
+    path?: string;
+    /** Optional command override. Defaults to deriving from `title`. */
+    command?: string;
 }
 
-const SectionTitle = ({ icon, title, className, classNames }: Props) => {
+const slugCmd = (s: string) =>
+    s
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .replace(/\s+/g, '-');
+
+const SectionTitle = ({
+    title,
+    path = '~',
+    command,
+    className,
+    classNames,
+}: Props) => {
+    const cmd = command ?? `cat ${slugCmd(title)}.md`;
+
     return (
         <div
             className={cn(
-                'flex items-center gap-4 mb-10',
+                'flex items-center gap-3 mb-10',
                 className,
                 classNames?.container,
             )}
         >
-            {icon ? (
-                icon
-            ) : (
-                <SectionFlower
-                    width={25}
-                    className={cn(
-                        'animate-spin duration-7000',
-                        classNames?.icon,
-                    )}
-                />
-            )}
-            <h2
-                className={cn(
-                    'text-xl uppercase leading-none',
-                    classNames?.title,
-                )}
-            >
-                {title}
-            </h2>
+            <Prompt
+                path={path}
+                command={cmd}
+                showCaret
+                className={cn('text-base md:text-lg', classNames?.title)}
+            />
         </div>
     );
 };

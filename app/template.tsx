@@ -24,8 +24,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
     return (
         <div>
-            <div className="page-transition w-screen h-screen fixed top-0 left-0 bg-background-light z-[5]">
-                <div className="page-transition--inner w-screen h-screen fixed top-0 left-0 bg-primary z-[5] translate-y-full"></div>
+            <div className="page-transition w-screen h-screen fixed top-0 left-0 bg-background z-[5] flex items-center justify-center">
+                <div className="page-transition--inner w-screen h-screen fixed top-0 left-0 bg-primary/10 z-[5] translate-y-full" />
+                <pre className="font-mono text-xs md:text-sm text-primary relative z-[6]">
+{`$ navigating...
+[████████░░] 80%`}
+                </pre>
             </div>
 
             {children}

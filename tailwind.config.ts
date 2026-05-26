@@ -16,6 +16,12 @@ export default {
                     light: 'hsl(var(--background-light))',
                 },
                 foreground: 'hsl(var(--foreground))',
+                code: {
+                    key: 'hsl(var(--code-key))',
+                    string: 'hsl(var(--code-string))',
+                    number: 'hsl(var(--code-number))',
+                    comment: 'hsl(var(--code-comment))',
+                },
                 card: {
                     DEFAULT: 'hsl(var(--card))',
                     foreground: 'hsl(var(--card-foreground))',
@@ -63,6 +69,7 @@ export default {
             fontFamily: {
                 anton: ['var(--font-anton)'],
                 'roboto-flex': ['var(--font-roboto-flex)'],
+                mono: ['var(--font-mono)'],
             },
             padding: {
                 section: '250px',
@@ -80,6 +87,30 @@ export default {
             },
             screens: {
                 xs: '420px',
+            },
+            keyframes: {
+                scan: {
+                    '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                    '10%': { opacity: '0.4' },
+                    '90%': { opacity: '0.4' },
+                    '100%': {
+                        transform: 'translateY(100vh)',
+                        opacity: '0',
+                    },
+                },
+                blink: {
+                    '0%, 49%': { opacity: '1' },
+                    '50%, 100%': { opacity: '0' },
+                },
+                'pulse-dot': {
+                    '0%, 100%': { opacity: '0.15', transform: 'scale(1)' },
+                    '50%': { opacity: '0.6', transform: 'scale(1.6)' },
+                },
+            },
+            animation: {
+                scan: 'scan 25s linear infinite',
+                blink: 'blink 1.05s steps(1) infinite',
+                'pulse-dot': 'pulse-dot 4s ease-in-out infinite',
             },
         },
     },

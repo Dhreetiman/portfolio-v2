@@ -5,35 +5,41 @@ import React, { useRef } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
+const BOOT_LINES = [
+    '$ booting portfolio...',
+    '> resolving modules........[OK]',
+    '> loading assets...........[OK]',
+    '> compiling routes.........[OK]',
+    '> ready in 387ms',
+    '',
+    '  > welcome, dhreetiman.',
+];
+
 const Preloader = () => {
     const preloaderRef = useRef<HTMLDivElement>(null);
 
     useGSAP(
         () => {
             const tl = gsap.timeline({
-                defaults: {
-                    ease: 'power1.inOut',
-                },
+                defaults: { ease: 'power1.inOut' },
             });
 
-            tl.to('.name-text span', {
-                y: 0,
-                stagger: 0.05,
-                duration: 0.2,
+            tl.to('.boot-line', {
+                opacity: 1,
+                duration: 0.05,
+                stagger: 0.18,
             });
 
             tl.to('.preloader-item', {
-                delay: 1,
+                delay: 0.6,
                 y: '100%',
                 duration: 0.5,
-                stagger: 0.1,
+                stagger: 0.08,
             })
-                .to('.name-text span', { autoAlpha: 0 }, '<0.5')
+                .to('.boot-line', { autoAlpha: 0 }, '<0.4')
                 .to(
                     preloaderRef.current,
-                    {
-                        autoAlpha: 0,
-                    },
+                    { autoAlpha: 0, pointerEvents: 'none' },
                     '<1',
                 );
         },
@@ -42,29 +48,25 @@ const Preloader = () => {
 
     return (
         <div className="fixed inset-0 z-[6] flex" ref={preloaderRef}>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
+            {[...Array(10)].map((_, i) => (
+                <div
+                    key={i}
+                    className="preloader-item h-full w-[10%] bg-black"
+                />
+            ))}
 
-            <p className="name-text flex text-[20vw] lg:text-[200px] font-anton text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none overflow-hidden">
-                <span className="inline-block translate-y-full">D</span>
-                <span className="inline-block translate-y-full">H</span>
-                <span className="inline-block translate-y-full">R</span>
-                <span className="inline-block translate-y-full">E</span>
-                <span className="inline-block translate-y-full">E</span>
-                <span className="inline-block translate-y-full">T</span>
-                <span className="inline-block translate-y-full">I</span>
-                <span className="inline-block translate-y-full">M</span>
-                <span className="inline-block translate-y-full">A</span>
-                <span className="inline-block translate-y-full">N</span>
-            </p>
+            <div className="absolute inset-0 flex items-center justify-center">
+                <pre className="font-mono text-xs md:text-base text-foreground/90 leading-relaxed">
+                    {BOOT_LINES.map((line, i) => (
+                        <div
+                            key={i}
+                            className="boot-line opacity-0"
+                        >
+                            {line || ' '}
+                        </div>
+                    ))}
+                </pre>
+            </div>
         </div>
     );
 };

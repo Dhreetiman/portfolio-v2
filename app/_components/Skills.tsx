@@ -1,4 +1,5 @@
 'use client';
+import CodeBlock from '@/components/CodeBlock';
 import SectionTitle from '@/components/SectionTitle';
 import { MY_STACK } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
@@ -16,7 +17,6 @@ const Skills = () => {
         () => {
             const slideUpEl =
                 containerRef.current?.querySelectorAll('.slide-up');
-
             if (!slideUpEl?.length) return;
 
             const tl = gsap.timeline({
@@ -30,110 +30,61 @@ const Skills = () => {
 
             tl.from('.slide-up', {
                 opacity: 0,
-                y: 40,
+                y: 30,
                 ease: 'none',
-                stagger: 0.4,
-            });
-        },
-        { scope: containerRef },
-    );
-
-    useGSAP(
-        () => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'bottom 50%',
-                    end: 'bottom 10%',
-                    scrub: 1,
-                },
-            });
-
-            tl.to(containerRef.current, {
-                y: -150,
-                opacity: 0,
+                stagger: 0.06,
             });
         },
         { scope: containerRef },
     );
 
     return (
-        <section id="my-stack" ref={containerRef}>
+        <section className="py-section" id="my-stack" ref={containerRef}>
             <div className="container">
-                <SectionTitle title="My Stack" />
+                <SectionTitle
+                    title="my stack"
+                    path="~/skills"
+                    command="cat stack.yaml"
+                    className="slide-up"
+                />
 
-                <div className="space-y-20">
-                    {Object.entries(MY_STACK).map(([key, value]) => (
-                        <div className="grid sm:grid-cols-12" key={key}>
-                            <div className="sm:col-span-5">
-                                <p className="slide-up text-5xl font-anton leading-none text-muted-foreground uppercase">
-                                    {key}
-                                </p>
-                            </div>
-
-                            <div className="sm:col-span-7 flex gap-x-11 gap-y-9 flex-wrap">
+                <CodeBlock lang="yaml" filename="stack.yaml" className="slide-up">
+                    <code className="text-sm md:text-base leading-loose">
+                        {Object.entries(MY_STACK).map(([key, value], catIdx) => (
+                            <React.Fragment key={key}>
+                                <div className="slide-up">
+                                    <span className="text-code-key">{key}</span>
+                                    <span className="text-muted-foreground">
+                                        :
+                                    </span>
+                                </div>
                                 {value.map((item) => (
                                     <div
-                                        className="slide-up flex gap-3.5 items-center leading-none"
-                                        key={item.name}
+                                        key={`${key}-${item.name}`}
+                                        className="slide-up flex items-center gap-3 pl-4 group hover:text-primary transition-colors"
                                     >
-                                        <div>
-                                            <Image
-                                                src={item.icon}
-                                                alt={item.name}
-                                                width="40"
-                                                height="40"
-                                                className="max-h-10"
-                                            />
-                                        </div>
-                                        <span className="text-2xl capitalize">
-                                            {item.name}
+                                        <span className="text-muted-foreground">
+                                            -
                                         </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-
-    return (
-        <section id="my-stack" ref={containerRef}>
-            <div className="container">
-                <SectionTitle title="My Stack" />
-
-                <div className="space-y-20">
-                    {Object.entries(MY_STACK).map(([key, value]) => (
-                        <div className="grid sm:grid-cols-12" key={key}>
-                            <div className="sm:col-span-5">
-                                <p className="slide-up text-5xl font-anton leading-none text-muted-foreground uppercase">
-                                    {key}
-                                </p>
-                            </div>
-                            <div className="sm:col-span-7 flex gap-x-11 gap-y-9 flex-wrap">
-                                {value.map((item) => (
-                                    <div
-                                        className="slide-up flex gap-3.5 items-center leading-none"
-                                        key={item.name}
-                                    >
                                         <Image
                                             src={item.icon}
                                             alt={item.name}
-                                            width="40"
-                                            height="40"
-                                            className="h-10"
+                                            width={18}
+                                            height={18}
+                                            className="opacity-70 group-hover:opacity-100 transition-opacity"
                                         />
-                                        <span className="text-2xl capitalize">
+                                        <span className="text-code-string">
                                             {item.name}
                                         </span>
                                     </div>
                                 ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                                {catIdx < Object.keys(MY_STACK).length - 1 && (
+                                    <div>&nbsp;</div>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </code>
+                </CodeBlock>
             </div>
         </section>
     );
